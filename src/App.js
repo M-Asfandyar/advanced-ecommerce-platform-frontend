@@ -6,7 +6,10 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminProducts from './pages/AdminProducts';
-import AdminOrders from './pages/AdminOrders'; 
+import AdminOrders from './pages/AdminOrders';
+import Register from './pages/Register'; 
+import Login from './pages/Login'; 
+import UserDashboard from './pages/UserDashboard'; 
 
 const App = () => ( 
 <Router> 
@@ -15,6 +18,11 @@ const App = () => (
     <Route path="/product/:id" element={<ProductDetails />} /> 
     <Route path="/cart" element={<Cart />} /> 
     <Route path="/checkout" element={<Checkout />} />
+    <Route path="/register" element={<Register />} /> 
+    <Route path="/login" element={<Login />} />
+
+    {/* User Dashboard */} 
+    <Route path="/dashboard" element={<UserDashboard />} />
 
     {/* Admin Routes */} 
     <Route path="/admin" element={<AdminDashboard />} /> 
