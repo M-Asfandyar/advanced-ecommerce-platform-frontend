@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react'; 
 import axios from 'axios'; import { AuthContext } from '../context/authContext'; 
 
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
 const Login = () => { 
   const { setAuth } = useContext(AuthContext); 
   const [formData, setFormData] = useState({ email: '', password: '' });
  
   const handleLogin = async () => { 
     try { 
-      const response = await axios.post('http://localhost:4000/api/users/login', formData); 
+      const response = await axios.post(`${BASE_URL}/api/users/login`, formData); 
       setAuth({ token: response.data.token, userId: response.data.userId }); 
       alert('Login successful!'); 
     } catch (error) { 

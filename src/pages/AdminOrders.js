@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'; 
-import axios from 'axios'; 
+import axios from 'axios';
+
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 const AdminOrders = () => { 
   const [orders, setOrders] = useState([]);
   useEffect(() => { 
     const fetchOrders = async () => { 
-      try { const response = await axios.get('http://localhost:4000/api/orders'); 
+      try { const response = await axios.get(`${BASE_URL}/api/orders`); 
         setOrders(response.data);
       } catch (error) { 
         console.error('Error fetching orders:', error); 
@@ -17,7 +19,7 @@ const AdminOrders = () => {
   
   const updateOrderStatus = async (orderId, status) => { 
     try { 
-      await axios.put(`http://localhost:4000/api/orders/${orderId}`, { status }); 
+      await axios.put(`${BASE_URL}/api/orders/${orderId}`, { status }); 
       setOrders((prevOrders) => 
         prevOrders.map((order) => 
           order._id === orderId ? { ...order, status } : order 

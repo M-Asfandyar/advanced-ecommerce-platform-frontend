@@ -1,11 +1,13 @@
 import React, { useState } from 'react'; 
 import axios from 'axios'; 
 
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
 const Register = () => { 
   const [formData, setFormData] = useState({ name: '', email: '', password: '' }); 
   const handleRegister = async () => {
     try { 
-      await axios.post('http://localhost:4000/api/users/register', formData); alert('Registration successful!'); 
+      await axios.post(`${BASE_URL}/api/users/register`, formData); alert('Registration successful!'); 
     } catch (error) { 
       console.error('Error registering user:', error); 
       alert('Registration failed.'); 

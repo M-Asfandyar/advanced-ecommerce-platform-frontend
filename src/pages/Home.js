@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
  import axios from 'axios'; import socket from '../services/socket';
  import { addToCart } from '../services/cartService';
+ const BASE_URL = process.env.REACT_APP_BACKEND_URL;
  
  const Home = () => { const [products, setProducts] = useState([]); const userId = '6766e9ad4d725b3ae8e1e536'; 
   useEffect(() => { 
     const fetchProducts = async () => { 
       try { 
-        const response = await axios.get('http://localhost:4000/api/products?page=1&limit=10');
+        const response = await axios.get(`${BASE_URL}/api/products?page=1&limit=10`);
          setProducts(response.data.products); 
         } catch (error) { 
           console.error('Error fetching products:', error); } };

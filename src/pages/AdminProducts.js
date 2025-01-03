@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'; 
 import axios from 'axios'; 
 
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
 const AdminProducts = () => { 
   const [products, setProducts] = useState([]); 
   
@@ -8,7 +10,7 @@ const AdminProducts = () => {
   useEffect(() => { 
     const fetchProducts = async () => { 
       try { 
-        const response = await axios.get('http://localhost:4000/api/products'); 
+        const response = await axios.get(`${BASE_URL}/api/products`); 
         setProducts(response.data.products); } catch (error) { console.error('Error fetching products:', error); 
         } 
       }; 
