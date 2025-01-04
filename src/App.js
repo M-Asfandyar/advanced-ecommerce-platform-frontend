@@ -10,26 +10,32 @@ import AdminOrders from './pages/AdminOrders';
 import Register from './pages/Register'; 
 import Login from './pages/Login'; 
 import UserDashboard from './pages/UserDashboard'; 
+import VendorRegister from './pages/VendorRegister'; 
+import VendorLogin from './pages/VendorLogin'; 
+import PrivateRoute from './components/PrivateRoute'; 
 
 const App = () => ( 
-<Router> 
-  <Routes> 
-    <Route path="/" element={<Home />} /> 
-    <Route path="/product/:id" element={<ProductDetails />} /> 
-    <Route path="/cart" element={<Cart />} /> 
-    <Route path="/checkout" element={<Checkout />} />
-    <Route path="/register" element={<Register />} /> 
-    <Route path="/login" element={<Login />} />
+    <Router> 
+        <Routes> 
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} /> 
+            <Route path="/product/:id" element={<ProductDetails />} /> 
+            <Route path="/cart" element={<Cart />} /> 
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/register" element={<Register />} /> 
+            <Route path="/login" element={<Login />} />
+            <Route path="/vendor-register" element={<VendorRegister />} />
+            <Route path="/vendor-login" element={<VendorLogin />} />
 
-    {/* User Dashboard */} 
-    <Route path="/dashboard" element={<UserDashboard />} />
+            {/* User Dashboard (Protected) */}
+            <Route path="/dashboard" element={<PrivateRoute><UserDashboard /></PrivateRoute>} />
 
-    {/* Admin Routes */} 
-    <Route path="/admin" element={<AdminDashboard />} /> 
-    <Route path="/admin/products" element={<AdminProducts />} /> 
-    <Route path="/admin/orders" element={<AdminOrders />} />
-  </Routes>
-</Router> 
+            {/* Admin Routes (Protected) */}
+            <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
+            <Route path="/admin/products" element={<PrivateRoute><AdminProducts /></PrivateRoute>} />
+            <Route path="/admin/orders" element={<PrivateRoute><AdminOrders /></PrivateRoute>} />
+        </Routes>
+    </Router> 
 ); 
 
 export default App;
