@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
     const vendorToken = localStorage.getItem('vendorToken');
 
     // Allow access if either a user or a vendor is authenticated
-    return (userToken || vendorToken) ? children : <Navigate to="/login" />;
+    return (userToken || vendorToken) ? children : <Navigate to="/vendor-login" />; 
 };
 
 export default PrivateRoute;
