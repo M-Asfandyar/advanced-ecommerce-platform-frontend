@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; 
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import Home from './pages/Home'; 
 import ProductDetails from './pages/ProductDetails'; 
 import Cart from './pages/Cart'; 
@@ -18,35 +19,53 @@ import PrivateRoute from './components/PrivateRoute';
 const App = () => {
     const vendorToken = localStorage.getItem('vendorToken');
     const userToken = localStorage.getItem('userToken');
+    const { t, i18n } = useTranslation(); // Initialize translation functions
+
+    // Language switcher function
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+    };
 
     return (
         <Router>
-            {/* ✅ Navigation Bar Added Here */}
-            <nav style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>
-                <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
-                {userToken && (
-                    <>
-                        <Link to="/dashboard" style={{ marginRight: '10px' }}>User Dashboard</Link>
-                        <button onClick={() => {
-                            localStorage.removeItem('userToken');
-                            window.location.href = '/login';
-                        }}>Logout (User)</button>
-                    </>
-                )}
-                {vendorToken ? (
-                    <>
-                        <Link to="/vendor/orders" style={{ marginRight: '10px' }}>Vendor Orders</Link>
-                        <button onClick={() => {
-                            localStorage.removeItem('vendorToken');
-                            window.location.href = '/vendor-login';
-                        }}>Logout (Vendor)</button>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/vendor-register" style={{ marginRight: '10px' }}>Vendor Register</Link>
-                        <Link to="/vendor-login">Vendor Login</Link>
-                    </>
-                )}
+            {/* ✅ Navigation Bar with Language Selector */}
+            <nav style={{ padding: '10px', borderBottom: '1px solid #ddd', display: 'flex', justifyContent: 'space-between' }}>
+                <div>
+                    <Link to="/" style={{ marginRight: '10px' }}>{t('home')}</Link>
+                    {userToken && (
+                        <>
+                            <Link to="/dashboard" style={{ marginRight: '10px' }}>{t('userDashboard')}</Link>
+                            <button onClick={() => {
+                                localStorage.removeItem('userToken');
+                                window.location.href = '/login';
+                            }}>
+                                {t('logout')} ({t('user')})
+                            </button>
+                        </>
+                    )}
+                    {vendorToken ? (
+                        <>
+                            <Link to="/vendor/orders" style={{ marginRight: '10px' }}>{t('vendorOrders')}</Link>
+                            <button onClick={() => {
+                                localStorage.removeItem('vendorToken');
+                                window.location.href = '/vendor-login';
+                            }}>
+                                {t('logout')} ({t('vendor')})
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/vendor-register" style={{ marginRight: '10px' }}>{t('vendorRegister')}</Link>
+                            <Link to="/vendor-login">{t('vendorLogin')}</Link>
+                        </>
+                    )}
+                </div>
+                {/* Language Selector */}
+                <div>
+                    <button onClick={() => changeLanguage('en')} style={{ marginRight: '5px' }}>English</button>
+                    <button onClick={() => changeLanguage('es')} style={{ marginRight: '5px' }}>Español</button>
+                    <button onClick={() => changeLanguage('de')}>Deutsch</button>
+                </div>
             </nav>
 
             {/* ✅ Main Application Routes */}

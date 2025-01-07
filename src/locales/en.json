@@ -1,0 +1,9 @@
+{
+  "welcome": "Welcome to our E-Commerce Platform!",
+  "cart": "Cart",
+  "checkout": "Checkout",
+  "login": "Login",
+  "register": "Register",
+  "totalAmount": "Total Amount",
+  "outOfStock": "Out of Stock"
+}

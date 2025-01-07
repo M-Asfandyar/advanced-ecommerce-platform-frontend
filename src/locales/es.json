@@ -1,0 +1,9 @@
+{
+  "welcome": "¡Bienvenido a nuestra plataforma de comercio electrónico!",
+  "cart": "Carrito",
+  "checkout": "Pagar",
+  "login": "Iniciar sesión",
+  "register": "Registrarse",
+  "totalAmount": "Monto total",
+  "outOfStock": "Agotado"
+}

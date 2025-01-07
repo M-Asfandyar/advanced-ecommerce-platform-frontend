@@ -1,0 +1,9 @@
+{
+  "welcome": "Willkommen auf unserer E-Commerce-Plattform!",
+  "cart": "Warenkorb",
+  "checkout": "Kasse",
+  "login": "Anmelden",
+  "register": "Registrieren",
+  "totalAmount": "Gesamtbetrag",
+  "outOfStock": "Nicht auf Lager"
+}
